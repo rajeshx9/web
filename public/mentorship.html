@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentorship - AlumniConnect</title>
+    <meta name="description" content="Connect with mentors and mentees in our AI-powered mentorship platform. Build meaningful professional relationships.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-space-dark text-constellation-light">
+    <nav class="fixed top-0 w-full z-50 bg-space-dark/90 backdrop-blur-md border-b border-constellation-glow/20">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-r from-constellation-primary to-constellation-secondary"></div>
+                    <span class="text-xl font-bold">AlumniConnect</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="search.html" class="nav-link">Search</a>
+                    <a href="events.html" class="nav-link">Events</a>
+                    <a href="mentorship.html" class="nav-link text-constellation-primary">Mentorship</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 px-6">
+        <section class="container mx-auto mb-12 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Mentorship Platform</h1>
+            <p class="text-xl text-constellation-light/80">AI-powered matching for meaningful professional relationships</p>
+        </section>
+
+        <section class="container mx-auto grid md:grid-cols-2 gap-8 mb-12">
+            <div class="mentor-section bg-space-card/50 backdrop-blur-sm rounded-2xl p-8 border border-constellation-glow/20">
+                <h2 class="text-2xl font-bold mb-4 text-constellation-primary">Become a Mentor</h2>
+                <p class="text-constellation-light/80 mb-6">Share your experience and guide the next generation of professionals</p>
+                <ul class="space-y-3 mb-6 text-constellation-light/70">
+                    <li>✓ Flexible scheduling</li>
+                    <li>✓ AI-matched mentees</li>
+                    <li>✓ Professional development</li>
+                    <li>✓ Community recognition</li>
+                </ul>
+                <button class="btn-primary w-full py-3 rounded-lg">Sign Up as Mentor</button>
+            </div>
+
+            <div class="mentee-section bg-space-card/50 backdrop-blur-sm rounded-2xl p-8 border border-constellation-glow/20">
+                <h2 class="text-2xl font-bold mb-4 text-constellation-secondary">Find a Mentor</h2>
+                <p class="text-constellation-light/80 mb-6">Connect with experienced alumni to accelerate your career growth</p>
+                <ul class="space-y-3 mb-6 text-constellation-light/70">
+                    <li>✓ Personalized matching</li>
+                    <li>✓ Career guidance</li>
+                    <li>✓ Industry insights</li>
+                    <li>✓ Network expansion</li>
+                </ul>
+                <button class="btn-primary w-full py-3 rounded-lg">Find My Mentor</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.fromTo('.mentor-section, .mentee-section', { opacity: 0, y: 30 }, { 
+                duration: 0.8, opacity: 1, y: 0, stagger: 0.2, delay: 0.3, ease: "power3.out" 
+            });
+        });
+    </script>
+</body>
+</html>

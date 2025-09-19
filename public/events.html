@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - AlumniConnect</title>
+    <meta name="description" content="Discover and organize alumni events, networking sessions, and professional development opportunities.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-space-dark text-constellation-light">
+    <nav class="fixed top-0 w-full z-50 bg-space-dark/90 backdrop-blur-md border-b border-constellation-glow/20">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-r from-constellation-primary to-constellation-secondary"></div>
+                    <span class="text-xl font-bold">AlumniConnect</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="search.html" class="nav-link">Search</a>
+                    <a href="events.html" class="nav-link text-constellation-primary">Events</a>
+                    <a href="mentorship.html" class="nav-link">Mentorship</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 px-6">
+        <section class="container mx-auto mb-12 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Alumni Events</h1>
+            <p class="text-xl text-constellation-light/80">Connect through meaningful experiences and networking opportunities</p>
+        </section>
+
+        <section class="container mx-auto">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="event-card bg-space-card/50 backdrop-blur-sm rounded-2xl p-6 border border-constellation-glow/20">
+                    <div class="mb-4">
+                        <div class="text-2xl mb-2">🎯</div>
+                        <h3 class="text-xl font-bold mb-2">Tech Networking Mixer</h3>
+                        <p class="text-constellation-light/70">Connect with tech alumni from top companies</p>
+                    </div>
+                    <div class="text-sm text-constellation-light/60 mb-4">
+                        <p>📅 March 15, 2024</p>
+                        <p>📍 San Francisco, CA</p>
+                        <p>👥 50+ attendees</p>
+                    </div>
+                    <button class="btn-primary w-full py-2 rounded-lg">Register</button>
+                </div>
+
+                <div class="event-card bg-space-card/50 backdrop-blur-sm rounded-2xl p-6 border border-constellation-glow/20">
+                    <div class="mb-4">
+                        <div class="text-2xl mb-2">💼</div>
+                        <h3 class="text-xl font-bold mb-2">Career Development Workshop</h3>
+                        <p class="text-constellation-light/70">Level up your career with expert guidance</p>
+                    </div>
+                    <div class="text-sm text-constellation-light/60 mb-4">
+                        <p>📅 March 22, 2024</p>
+                        <p>📍 Virtual Event</p>
+                        <p>👥 100+ attendees</p>
+                    </div>
+                    <button class="btn-primary w-full py-2 rounded-lg">Register</button>
+                </div>
+
+                <div class="event-card bg-space-card/50 backdrop-blur-sm rounded-2xl p-6 border border-constellation-glow/20">
+                    <div class="mb-4">
+                        <div class="text-2xl mb-2">🎓</div>
+                        <h3 class="text-xl font-bold mb-2">Annual Alumni Gala</h3>
+                        <p class="text-constellation-light/70">Celebrate achievements and build connections</p>
+                    </div>
+                    <div class="text-sm text-constellation-light/60 mb-4">
+                        <p>📅 April 5, 2024</p>
+                        <p>📍 New York, NY</p>
+                        <p>👥 300+ attendees</p>
+                    </div>
+                    <button class="btn-primary w-full py-2 rounded-lg">Register</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.fromTo('.event-card', { opacity: 0, y: 30 }, { 
+                duration: 0.6, opacity: 1, y: 0, stagger: 0.1, delay: 0.4, ease: "power3.out" 
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Alumni - AlumniConnect</title>
+    <meta name="description" content="Find and connect with alumni from your institution. Search by name, company, graduation year, and field of study.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-space-dark text-constellation-light">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-space-dark/90 backdrop-blur-md border-b border-constellation-glow/20">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-r from-constellation-primary to-constellation-secondary"></div>
+                    <span class="text-xl font-bold">AlumniConnect</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="search.html" class="nav-link text-constellation-primary">Search</a>
+                    <a href="events.html" class="nav-link">Events</a>
+                    <a href="mentorship.html" class="nav-link">Mentorship</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-constellation-primary to-constellation-secondary flex items-center justify-center">
+                        <span class="text-sm font-bold">JD</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 px-6">
+        <!-- Search Header -->
+        <section class="container mx-auto mb-12 text-center search-header">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Find Your Network</h1>
+            <p class="text-xl text-constellation-light/80 max-w-2xl mx-auto">Connect with alumni from your institution and expand your professional network</p>
+        </section>
+
+        <!-- Search Filters -->
+        <section class="container mx-auto mb-8">
+            <div class="bg-space-card/50 backdrop-blur-sm rounded-2xl p-6 border border-constellation-glow/20 search-filters">
+                <div class="grid md:grid-cols-4 gap-4">
+                    <div>
+                        <input type="text" id="searchName" placeholder="Search by name..." class="form-input w-full">
+                    </div>
+                    <div>
+                        <select id="searchCompany" class="form-input w-full">
+                            <option value="">All Companies</option>
+                            <option value="google">Google</option>
+                            <option value="meta">Meta</option>
+                            <option value="apple">Apple</option>
+                            <option value="microsoft">Microsoft</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select id="searchField" class="form-input w-full">
+                            <option value="">All Fields</option>
+                            <option value="technology">Technology</option>
+                            <option value="finance">Finance</option>
+                            <option value="consulting">Consulting</option>
+                            <option value="design">Design</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select id="searchYear" class="form-input w-full">
+                            <option value="">All Years</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                            <option value="2017">2017</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alumni Grid -->
+        <section class="container mx-auto">
+            <div id="alumniGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Alumni cards will be dynamically generated -->
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Initialize search page
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAlumniData();
+            setupSearch();
+            animatePageElements();
+        });
+
+        function loadAlumniData() {
+            const alumni = [
+                { name: 'Sarah Chen', company: 'Google', position: 'Senior Engineer', year: 2018, field: 'Technology', avatar: '👩‍💻' },
+                { name: 'Michael Rodriguez', company: 'Meta', position: 'Product Manager', year: 2019, field: 'Technology', avatar: '👨‍💼' },
+                { name: 'Emily Johnson', company: 'McKinsey', position: 'Consultant', year: 2017, field: 'Consulting', avatar: '👩‍💼' },
+                { name: 'David Kim', company: 'Goldman Sachs', position: 'Analyst', year: 2020, field: 'Finance', avatar: '👨‍💻' },
+                { name: 'Lisa Wang', company: 'Tesla', position: 'Design Lead', year: 2016, field: 'Design', avatar: '👩‍🎨' },
+                { name: 'James Thompson', company: 'Apple', position: 'iOS Developer', year: 2019, field: 'Technology', avatar: '👨‍💻' }
+            ];
+
+            const grid = document.getElementById('alumniGrid');
+            grid.innerHTML = alumni.map(person => `
+                <div class="alumni-card bg-space-card/50 backdrop-blur-sm rounded-2xl p-6 border border-constellation-glow/20 cursor-pointer transition-all hover:border-constellation-primary">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-r from-constellation-primary to-constellation-secondary flex items-center justify-center text-2xl">
+                            ${person.avatar}
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-constellation-light">${person.name}</h3>
+                            <p class="text-constellation-light/70">${person.position}</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <p class="text-constellation-light/80"><strong>Company:</strong> ${person.company}</p>
+                        <p class="text-constellation-light/80"><strong>Graduation:</strong> ${person.year}</p>
+                        <p class="text-constellation-light/80"><strong>Field:</strong> ${person.field}</p>
+                    </div>
+                    <div class="mt-6 flex space-x-3">
+                        <button class="btn-primary px-4 py-2 text-sm rounded-lg flex-1">Connect</button>
+                        <button class="btn-secondary px-4 py-2 text-sm rounded-lg flex-1">View Profile</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function setupSearch() {
+            const inputs = ['searchName', 'searchCompany', 'searchField', 'searchYear'];
+            inputs.forEach(id => {
+                document.getElementById(id).addEventListener('input', filterAlumni);
+            });
+        }
+
+        function filterAlumni() {
+            // Filter logic would go here
+            console.log('Filtering alumni...');
+        }
+
+        function animatePageElements() {
+            gsap.fromTo('.search-header', { opacity: 0, y: 30 }, { duration: 0.8, opacity: 1, y: 0, ease: "power3.out" });
+            gsap.fromTo('.search-filters', { opacity: 0, y: 20 }, { duration: 0.8, opacity: 1, y: 0, delay: 0.2, ease: "power3.out" });
+            gsap.fromTo('.alumni-card', { opacity: 0, y: 30 }, { duration: 0.6, opacity: 1, y: 0, stagger: 0.1, delay: 0.4, ease: "power3.out" });
+        }
+    </script>
+</body>
+</html>

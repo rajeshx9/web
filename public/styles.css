@@ -1,0 +1,283 @@
+/* AlumniConnect Design System */
+:root {
+  /* Space Theme Colors - HSL */
+  --space-dark: 220 25% 8%;
+  --space-card: 220 20% 12%;
+  --constellation-light: 210 40% 95%;
+  --constellation-primary: 240 100% 70%;
+  --constellation-secondary: 280 100% 70%;
+  --constellation-accent: 320 100% 70%;
+  --constellation-glow: 200 100% 80%;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, hsl(var(--constellation-primary)), hsl(var(--constellation-secondary)));
+  --gradient-secondary: linear-gradient(135deg, hsl(var(--constellation-secondary)), hsl(var(--constellation-accent)));
+  --gradient-accent: linear-gradient(135deg, hsl(var(--constellation-accent)), hsl(var(--constellation-glow)));
+  --gradient-text: linear-gradient(135deg, hsl(var(--constellation-primary)), hsl(var(--constellation-secondary)), hsl(var(--constellation-accent)));
+  
+  /* Shadows & Effects */
+  --shadow-constellation: 0 10px 40px hsl(var(--constellation-primary) / 0.3);
+  --shadow-glow: 0 0 30px hsl(var(--constellation-glow) / 0.4);
+  --blur-glass: blur(16px);
+  
+  /* Animations */
+  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Tailwind Custom Configuration */
+.tailwind-config {
+  /* Background Colors */
+  background-color: hsl(var(--space-dark));
+}
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: hsl(var(--space-dark));
+  color: hsl(var(--constellation-light));
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Custom Utility Classes */
+.bg-space-dark { background-color: hsl(var(--space-dark)); }
+.bg-space-card { background-color: hsl(var(--space-card)); }
+.text-constellation-light { color: hsl(var(--constellation-light)); }
+.text-constellation-primary { color: hsl(var(--constellation-primary)); }
+.text-constellation-secondary { color: hsl(var(--constellation-secondary)); }
+.text-constellation-accent { color: hsl(var(--constellation-accent)); }
+.text-constellation-glow { color: hsl(var(--constellation-glow)); }
+.border-constellation-glow { border-color: hsl(var(--constellation-glow)); }
+
+/* Gradient Text */
+.gradient-text {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Button Styles */
+.btn-primary {
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  font-weight: 600;
+  transition: var(--transition-smooth);
+  box-shadow: var(--shadow-constellation);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 50px hsl(var(--constellation-primary) / 0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: hsl(var(--constellation-light));
+  border: 2px solid hsl(var(--constellation-glow) / 0.5);
+  font-weight: 600;
+  transition: var(--transition-smooth);
+  backdrop-filter: var(--blur-glass);
+}
+
+.btn-secondary:hover {
+  background: hsl(var(--constellation-glow) / 0.1);
+  border-color: hsl(var(--constellation-glow));
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+/* Navigation */
+.nav-link {
+  position: relative;
+  transition: var(--transition-smooth);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-primary);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Feature Cards */
+.feature-card {
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.feature-card:hover::before {
+  opacity: 0.05;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px hsl(var(--constellation-primary) / 0.2);
+}
+
+/* Canvas Styles */
+#constellation-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0px); }
+  50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+/* Animation Classes for GSAP */
+.hero-content {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.feature-header {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.feature-card {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.stat-item {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.cta-section {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+/* Form Styles */
+.form-input {
+  background: hsl(var(--space-card) / 0.5);
+  border: 2px solid hsl(var(--constellation-glow) / 0.3);
+  color: hsl(var(--constellation-light));
+  padding: 1rem;
+  border-radius: 0.75rem;
+  transition: var(--transition-smooth);
+  backdrop-filter: var(--blur-glass);
+}
+
+.form-input:focus {
+  border-color: hsl(var(--constellation-primary));
+  box-shadow: 0 0 20px hsl(var(--constellation-primary) / 0.3);
+  outline: none;
+}
+
+.form-input::placeholder {
+  color: hsl(var(--constellation-light) / 0.5);
+}
+
+/* Loading Animation */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid hsl(var(--constellation-glow) / 0.3);
+  border-top: 4px solid hsl(var(--constellation-primary));
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .gradient-text {
+    font-size: 2.5rem;
+  }
+  
+  .feature-card {
+    margin-bottom: 2rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .btn-primary {
+    border: 2px solid white;
+  }
+  
+  .btn-secondary {
+    border-width: 3px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .nav, .cta-section, #constellation-canvas {
+    display: none !important;
+  }
+}
